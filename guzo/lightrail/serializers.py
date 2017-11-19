@@ -1,11 +1,12 @@
 """ 
-Ethiopian Movie Database. 
+Ethiopian Transport API
+Serializers
 """
 
-__author__ = "ETMDB (happy@etmdb.com)"
+__author__ = "Dawit Nida (dchonch@gmail.com)"
 __date__ = "Date: 18/11/2017"
-__version__ = "Version: "
-__Copyright__ = "Copyright: @etmdb"
+__version__ = "Version: 1.0.0"
+__Copyright__ = "Copyright: @dawitnida"
 
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
