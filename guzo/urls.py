@@ -3,8 +3,8 @@ Ethiopian Transport API
 URL Configuration for guzo project
 """
 
-__author__ = "Dawit Nida (dchonch@gmail.com)"
-__date__ = "Date: 18/11/2017"
+__author__ = "Dawit Nida (dawit@dawitnida.com)"
+__date__ = "Date: 18-11-2017"
 __version__ = "Version: 1.0.0"
 __Copyright__ = "Copyright: @dawitnida"
 
@@ -16,8 +16,8 @@ from rest_framework import routers
 from guzo.lightrail import views
 
 router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
-router.register(r'groups', views.GroupViewSet)
+# router.register(r'users', views.UserViewSet)
+# router.register(r'groups', views.GroupViewSet)
 router.register(r'stations', views.StationViewSet)
 router.register(r'overview', views.OverviewMetadataViewSet)
 router.register(r'technical', views.TechnicalViewSet)

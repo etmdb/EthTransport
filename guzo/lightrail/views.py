@@ -3,8 +3,8 @@ Ethiopian Transport API
 Views
 """
 
-__author__ = "Dawit Nida (dchonch@gmail.com)"
-__date__ = "Date: 18/11/2017"
+__author__ = "Dawit Nida (dawit@dawitnida.com)"
+__date__ = "Date: 18-11-2017"
 __version__ = "Version: 1.0.0"
 __Copyright__ = "Copyright: @dawitnida"
 
