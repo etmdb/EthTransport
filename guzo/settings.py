@@ -74,7 +74,13 @@ WSGI_APPLICATION = 'guzo.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'guzo_prod.db'),
+        'CONN_MAX_AGE': 500,
+    },
+    'api_db': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'guzo_api.db'),
+        'CONN_MAX_AGE': 20,
     }
 }
 
@@ -121,3 +127,8 @@ REST_FRAMEWORK = {
 }
 
 STATIC_URL = '/static/'
+
+# ## Admin Configurations ########################
+ADMINS = (
+    ('Dawit Nida', 'dawit@dawitnida.com'),
+)

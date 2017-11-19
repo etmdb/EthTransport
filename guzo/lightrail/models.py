@@ -14,14 +14,15 @@ from django.core.validators import URLValidator
 import random
 from audit_log.models import AuthStampedModel
 import uuid
+from model_utils import Choices
 
-salt = 'CODED'
+salt = 'das54sFsdfVsTplfsNmf'
 
 
 class BaseModel(models.Model):
     created_date = models.DateTimeField(auto_now_add=timezone.now(), editable=False)
     updated_date = models.DateTimeField(auto_now=timezone.now())
-    flag_approved = models.BooleanField(default=False)
+    entry_status = models.IntegerField(choices=Choices.ENTRY_STATUSES, default=Choices.ENTRY_STATUSES.draft, )
     slug = models.SlugField(default=random.randrange(10), blank=True, null=True, max_length=100)
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
 
@@ -29,7 +30,24 @@ class BaseModel(models.Model):
         abstract = True
 
 
-class OverviewMetadata(BaseModel, AuthStampedModel):
+class Station(BaseModel, AuthStampedModel):
+    code = models.CharField(max_length=100, blank=True, )
+    name = models.CharField(max_length=100)
+    street_address = models.CharField(max_length=100, default='', blank=True, null=True, )
+    place = models.IntegerField(choices=Choices.PLACE, default=1)
+    longitude = models.FloatField(blank=True, null=True, )
+    latitude = models.FloatField(blank=True, null=True, )
+    operational_status = models.IntegerField(choices=Choices.OPERATIONAL_STATUSES, default=1)
+
+
+class Technical(BaseModel, AuthStampedModel):
+    system_length = models.CharField(max_length=100)
+    track_gauge = models.CharField(max_length=100)
+    top_speed = models.CharField(max_length=100)
+    electrification = models.CharField(max_length=100)
+
+
+class Service(BaseModel, AuthStampedModel):
     name = models.CharField(max_length=100)
     locale = models.CharField(max_length=100)
     number_of_lines = models.PositiveSmallIntegerField()
@@ -40,27 +58,13 @@ class OverviewMetadata(BaseModel, AuthStampedModel):
     operation_start_date = models.DateField()
     operators = models.CharField(max_length=100)
     number_of_vehicles = models.PositiveSmallIntegerField()
-
-
-class Station(BaseModel, AuthStampedModel):
-    code = models.CharField(max_length=100, blank=True, )
-    name = models.CharField(max_length=100)
-    is_operational = models.BooleanField(default=False)
-    street_address = models.CharField(max_length=100, default='', blank=True, null=True, )
-    long = models.FloatField(blank=True, null=True, )
-    lat = models.FloatField(blank=True, null=True, )
-
-
-class Technical(BaseModel, AuthStampedModel):
-    system_length = models.CharField(max_length=100)
-    track_gauge = models.CharField(max_length=100)
-    top_speed = models.CharField(max_length=100)
-    electrification = models.CharField(max_length=100)
+    technical = models.OneToOneField(Technical, blank=True, null=True)
 
 
 class Media(BaseModel, AuthStampedModel):
-    gallery_type = models.CharField(max_length=5)
+    gallery_type = models.IntegerField(choices=Choices.SOCIAL_MEDIA, default=1)
     image_data = models.ImageField(upload_to='gallery', blank=True, null=True)
     caption = models.CharField(max_length=60, default='', )
-    overview = models.ForeignKey(OverviewMetadata)
     video_url = models.CharField(max_length=100, blank=True, default='', validators=[URLValidator()])
+    service = models.ForeignKey(Service, blank=True, null=True)
+    station = models.ForeignKey(Station, blank=True, null=True)

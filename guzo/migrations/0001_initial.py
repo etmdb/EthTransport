@@ -42,7 +42,7 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='OverviewMetadata',
+            name='Service',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('created_with_session_key', audit_log.models.fields.CreatingSessionKeyField(editable=False, max_length=40, null=True)),
@@ -116,7 +116,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='media',
-            name='overview',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='guzo.OverviewMetadata'),
+            name='service',
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='guzo.Service'),
         ),
     ]

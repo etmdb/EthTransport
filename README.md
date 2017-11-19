@@ -6,8 +6,12 @@ Initial work for Ethiopian Transportation API.
 
 #TODOs
 
+- Add endpoints to
+    - Train Information
+    - Route Information
+    - Fare Information
+    - Timetable/Schedule Information
 - Bus Stations
 - Long/Distance rail stations
-
 
 Please fork and contribute. 

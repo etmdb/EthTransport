@@ -13,6 +13,8 @@ from rest_framework import viewsets
 from .serializers import *
 from .models import *
 
+# Custom DB Selector #QuickFix for using multiple DB
+DB_SCOPE = 'guzo_prod.db'
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -40,12 +42,12 @@ class StationViewSet(viewsets.ModelViewSet):
     serializer_class = serializer
 
 
-class OverviewMetadataViewSet(viewsets.ModelViewSet):
+class ServiceViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows overview metadata to be viewed or edited.
+    API endpoint that allows service metadata to be viewed or edited.
     """
-    queryset = OverviewMetadata.objects.all()
-    serializer = OverviewMetadataSerializer
+    queryset = Service.objects.all()
+    serializer = ServiceSerializer
     serializer_class = serializer
 
 
