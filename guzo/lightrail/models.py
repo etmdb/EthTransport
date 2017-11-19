@@ -1,0 +1,56 @@
+from django.db import models
+from django.utils import timezone
+from django.core.validators import URLValidator
+import random
+from audit_log.models import AuthStampedModel
+import uuid
+
+salt = 'CODED'
+
+
+class BaseModel(models.Model):
+    created_date = models.DateTimeField(auto_now_add=timezone.now(), editable=False)
+    updated_date = models.DateTimeField(auto_now=timezone.now())
+    flag_approved = models.BooleanField(default=False)
+    slug = models.SlugField(default=random.randrange(10), blank=True, null=True, max_length=100)
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+
+    class Meta:
+        abstract = True
+
+
+class OverviewMetadata(BaseModel, AuthStampedModel):
+    name = models.CharField(max_length=100)
+    locale = models.CharField(max_length=100)
+    number_of_lines = models.PositiveSmallIntegerField()
+    number_of_stations = models.PositiveSmallIntegerField()
+    transit_type = models.CharField(max_length=100)
+    budget = models.IntegerField(default=0, blank=True, )
+    daily_ridership = models.IntegerField(default=0)
+    operation_start_date = models.DateField()
+    operators = models.CharField(max_length=100)
+    number_of_vehicles = models.PositiveSmallIntegerField()
+
+
+class Station(BaseModel, AuthStampedModel):
+    code = models.CharField(max_length=100, blank=True, )
+    name = models.CharField(max_length=100)
+    is_operational = models.BooleanField(default=False)
+    street_address = models.CharField(max_length=100, default='', blank=True, null=True, )
+    long = models.FloatField(blank=True, null=True, )
+    lat = models.FloatField(blank=True, null=True, )
+
+
+class Technical(BaseModel, AuthStampedModel):
+    system_length = models.CharField(max_length=100)
+    track_gauge = models.CharField(max_length=100)
+    top_speed = models.CharField(max_length=100)
+    electrification = models.CharField(max_length=100)
+
+
+class Media(BaseModel, AuthStampedModel):
+    gallery_type = models.CharField(max_length=5)
+    image_data = models.ImageField(upload_to='gallery', blank=True, null=True)
+    caption = models.CharField(max_length=60, default='', )
+    overview = models.ForeignKey(OverviewMetadata)
+    video_url = models.CharField(max_length=100, blank=True, default='', validators=[URLValidator()])
