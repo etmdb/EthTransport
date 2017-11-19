@@ -1,11 +1,14 @@
 """
+Ethiopian Transport API
 WSGI config for guzo project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/1.11/howto/deployment/wsgi/
 """
+
+__author__ = "Dawit Nida (dchonch@gmail.com)"
+__date__ = "Date: 18/11/2017"
+__version__ = "Version: 1.0.0"
+__Copyright__ = "Copyright: @dawitnida"
 
 import os
 
