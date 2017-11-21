@@ -14,7 +14,7 @@ from .serializers import *
 from .models import *
 
 # Custom DB Selector #QuickFix for using multiple DB
-DB_SCOPE = 'guzo_prod.db'
+# DB_SCOPE = 'guzo_prod.db'
 
 class UserViewSet(viewsets.ModelViewSet):
     """

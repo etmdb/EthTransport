@@ -13,14 +13,19 @@ from django.utils.translation import ugettext_lazy as _
 
 class Choices:
     OPERATIONAL_STATUSES = (
-        (0, 'planned', _('Planned')),
-        (1, 'under_construction', _('Under construction')),
-        (2, 'opened', _('Opened')),
-        (3, 'under_maintenance', _('Under maintenance')),
-        (4, 'closed', _('Closed')),
+        (u'1', u'Planned'),
+        (u'2', u'Under construction'),
+        (u'3', u'Opened'),
+        (u'4', u'Under maintenance'),
+        (u'4', u'Closed'),
     )
 
-    ENTRY_STATUSES = ('draft', 'new', 'approved', 'published')
+    ENTRY_STATUSES = (
+        (u'1', u'Draft'),
+        (u'2', u'New'),
+        (u'3', u'Approved'),
+        (u'4', u'Published'),
+    )
 
     PLACE = (
         (u'1', u'Addis Ababa'),

@@ -16,7 +16,7 @@ from models import *
 class BaseSerializer(serializers.ModelSerializer):
     class Meta:
         fields = ('uuid', 'entry_status', 'created_date', 'updated_date', 'slug',)
-        read_only_fields = ('uuid', 'entry_status', 'created_date', 'updated_date',)
+        read_only_fields = ('uuid', 'created_date', 'updated_date',)
 
     def to_representation(self, instance):
         representation = super(BaseSerializer, self).to_representation(instance)

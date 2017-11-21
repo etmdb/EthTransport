@@ -17,7 +17,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '%o#e#8kbd7o5xn8lfh22b&##yz8+rsk0xy#9%2bafexkb)*sus'
+with open('guzo/secretkey.txt') as f:
+    SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -74,12 +75,12 @@ WSGI_APPLICATION = 'guzo.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'guzo_prod.db'),
+        'NAME': os.path.join(BASE_DIR, 'guzo_api.db'),
         'CONN_MAX_AGE': 500,
     },
-    'api_db': {
+    'prod_db': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'guzo_api.db'),
+        'NAME': os.path.join(BASE_DIR, 'guzo_prod.db'),
         'CONN_MAX_AGE': 20,
     }
 }
