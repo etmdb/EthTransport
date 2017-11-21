@@ -38,6 +38,7 @@ class Station(BaseModel, AuthStampedModel):
     longitude = models.FloatField(blank=True, null=True, )
     latitude = models.FloatField(blank=True, null=True, )
     operational_status = models.IntegerField(choices=Choices.OPERATIONAL_STATUSES, default=1, )
+    ticket_sale = models.BooleanField(default=True)
 
 
 class Technical(BaseModel, AuthStampedModel):

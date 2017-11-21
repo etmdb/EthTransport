@@ -23,7 +23,7 @@ class BaseAdmin(admin.ModelAdmin):
 
 class StationAdmin(BaseAdmin):
     list_display = ('name', 'code', 'place', 'street_address', 'longitude', 'latitude',
-                    'operational_status',) + BaseAdmin.list_display
+                    'operational_status', 'ticket_sale',) + BaseAdmin.list_display
     list_filter = ('name',)
     search_fields = ('name',)
 

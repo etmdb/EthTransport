@@ -50,7 +50,8 @@ class StationSerializer(BaseSerializer):
     class Meta(BaseSerializer.Meta):
         model = Station
         fields = BaseSerializer.Meta.fields + (
-            'url', 'code', 'name', 'longitude', 'latitude', 'operational_status', 'street_address', 'place',)
+            'url', 'code', 'name', 'longitude', 'latitude', 'operational_status', 'street_address', 'place',
+            'ticket_sale',)
 
 
 class TechnicalSerializer(BaseSerializer):
@@ -65,4 +66,4 @@ class MediaSerializer(BaseSerializer):
     class Meta(BaseSerializer.Meta):
         model = Media
         fields = BaseSerializer.Meta.fields + (
-        'url', 'gallery_type', 'image_data', 'caption', 'video_url', 'service', 'station',)
+            'url', 'gallery_type', 'image_data', 'caption', 'video_url', 'service', 'station',)
