@@ -15,7 +15,7 @@ from models import *
 
 class BaseSerializer(serializers.ModelSerializer):
     class Meta:
-        fields = ('uuid', 'created_date', 'updated_date', 'slug',)
+        fields = ('uuid', 'entry_status', 'created_date', 'updated_date', 'slug',)
         read_only_fields = ('uuid', 'created_date', 'updated_date',)
 
     def to_representation(self, instance):
@@ -38,18 +38,20 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('url', 'name')
 
 
-class OverviewMetadataSerializer(BaseSerializer):
+class ServiceSerializer(BaseSerializer):
     class Meta(BaseSerializer.Meta):
-        model = OverviewMetadata
+        model = Service
         fields = BaseSerializer.Meta.fields + ('url', 'locale', 'name', 'number_of_lines', 'number_of_stations',
                                                'transit_type', 'budget', 'daily_ridership', 'operation_start_date',
-                                               'operators', 'number_of_vehicles',)
+                                               'operators', 'number_of_vehicles', 'technical',)
 
 
 class StationSerializer(BaseSerializer):
     class Meta(BaseSerializer.Meta):
         model = Station
-        fields = BaseSerializer.Meta.fields + ('url', 'code', 'name', 'is_operational', 'long', 'lat',)
+        fields = BaseSerializer.Meta.fields + (
+            'url', 'code', 'name', 'longitude', 'latitude', 'operational_status', 'street_address', 'place',
+            'ticket_sale',)
 
 
 class TechnicalSerializer(BaseSerializer):
@@ -59,8 +61,9 @@ class TechnicalSerializer(BaseSerializer):
 
 
 class MediaSerializer(BaseSerializer):
-    overview = OverviewMetadata
+    service = Service
 
     class Meta(BaseSerializer.Meta):
         model = Media
-        fields = BaseSerializer.Meta.fields + ('url', 'gallery_type', 'image_data', 'caption', 'overview', 'video_url',)
+        fields = BaseSerializer.Meta.fields + (
+            'url', 'gallery_type', 'image_data', 'caption', 'video_url', 'service', 'station',)

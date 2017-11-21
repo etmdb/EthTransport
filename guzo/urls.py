@@ -19,7 +19,7 @@ router = routers.DefaultRouter()
 # router.register(r'users', views.UserViewSet)
 # router.register(r'groups', views.GroupViewSet)
 router.register(r'stations', views.StationViewSet)
-router.register(r'overview', views.OverviewMetadataViewSet)
+router.register(r'service', views.ServiceViewSet)
 router.register(r'technical', views.TechnicalViewSet)
 router.register(r'media', views.MediaViewSet)
 
