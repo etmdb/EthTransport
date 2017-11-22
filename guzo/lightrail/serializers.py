@@ -10,7 +10,7 @@ __Copyright__ = "Copyright: @dawitnida"
 
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from models import *
+from guzo.lightrail.models import *
 
 
 class BaseSerializer(serializers.ModelSerializer):

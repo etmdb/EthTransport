@@ -14,7 +14,7 @@ from django.core.validators import URLValidator
 import random
 from audit_log.models import AuthStampedModel
 import uuid
-from model_utils import Choices
+from guzo.lightrail.model_utils import Choices
 
 salt = 'das54sFsdfVsTplfsNmf'
 

@@ -1,0 +1,57 @@
+version: "3"
+services:
+  postgress:
+    image: postgres
+    container_name: guzo-postgress
+    # environment:
+    #  - POSTGRESQL_DB=guzoproject
+    #  - POSTGRESQL_USER=guzouser
+    #  - POSTGRESQL_PASSWORD=guzopassword
+    # volumes:
+    ports:
+      - "5432:5432"
+  web:
+    # image:
+    container_name: guzo-web
+    build: .
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/EthTransport
+    links:
+       - postgress
+       - memcache
+       - redis
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgress
+    extra_hosts:
+      - www.guzo.dev:127.0.0.1
+    environment:
+      VIRTUAL_HOST: www.guzo.dev
+      HTTPS_METHOD: noredirect
+      TZ: Europe/Helsinki
+
+  memcache:
+    image: memcached:latest
+    container_name: guzo-memcache
+    command: memcached
+    environment:
+      TZ: Europe/Helsinki
+
+  pgadmin:
+    image: fenglc/pgadmin4
+    container_name: guzo-pgadmin
+    links:
+      - postgress:postgress
+    ports:
+      - "5050:5050"
+    environment:
+      TZ: Europe/Helsinki
+
+  redis:
+    image: redis:3-alpine
+    container_name: guzo-redis
+    command: redis-server
+    environment:
+      TZ: Europe/Helsinki

@@ -23,7 +23,7 @@ with open('guzo/secretkey.txt') as f:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0', ]
 
 # Application definition
 
@@ -82,6 +82,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'guzo_prod.db'),
         'CONN_MAX_AGE': 20,
+    },
+    'postgress': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'guzo',
+        'USER': 'pguser',
+        'HOST': 'guzoproject',
+        'PASSWORD': '32cdaAcmrQwu',
+        'PORT': 5432,
     }
 }
 
