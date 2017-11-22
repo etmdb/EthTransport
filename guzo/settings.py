@@ -34,8 +34,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'rest_framework_swagger',
+    'rest_framework',  # Django rest framework
+    'rest_framework_swagger',  # Django-swagger
+    # 'dbbackup',  # Django-dbbackup
+    'graphene_django',  # Graphene for GraphSQ
     'guzo',
 ]
 
@@ -127,6 +129,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+# ## Graphene setup
+
+GRAPHENE = {
+    'SCHEMA': 'guzo.lightrail.schema.schema',
+    'MIDDLEWARE': (
+        'graphene_django.debug.DjangoDebugMiddleware',
+    )
+}
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [

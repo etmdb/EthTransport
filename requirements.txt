@@ -17,3 +17,7 @@ simplejson==3.12.0
 uritemplate==3.0.0
 urllib3==1.22
 psycopg2
+graphene==1.4.1
+graphene-django==1.3
+graphql-core==1.1
+graphql-relay==0.4.5

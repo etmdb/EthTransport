@@ -31,6 +31,13 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 ]
 
+from graphene_django.views import GraphQLView
+
+# Register GraphQL endpoint
+urlpatterns += [
+    url(r'^graphql', GraphQLView.as_view(graphiql=True)),
+]
+
 from django.conf.urls import url
 from rest_framework_swagger.views import get_swagger_view
 
