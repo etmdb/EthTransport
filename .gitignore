@@ -202,3 +202,6 @@ venv.bak/
 secretkey.txt
 guzo_api.db
 guzo_prod.db
+/tools
+/gallery
+/config/nginx

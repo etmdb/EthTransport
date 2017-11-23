@@ -1,57 +1,79 @@
-version: "3"
+version: '3'
 services:
+  nginx:
+    restart: always
+    image: 'nginx:latest'
+    container_name: guzo-nginx
+    build: ./tools/nginx/
+    ports:
+      - '80:80'
+    links:
+      - 'web:web'
+    volumes:
+      - './guzo:/guzo'
+      - './config/nginx:/etc/nginx/conf.d'
+    depends_on:
+      - web
+    environment:
+      TZ: Europe/Helsinki
   postgress:
     image: postgres
+    restart: always
     container_name: guzo-postgress
-    # environment:
-    #  - POSTGRESQL_DB=guzoproject
-    #  - POSTGRESQL_USER=guzouser
-    #  - POSTGRESQL_PASSWORD=guzopassword
-    # volumes:
     ports:
-      - "5432:5432"
-  web:
-    # image:
-    container_name: guzo-web
-    build: .
-    command: python3 manage.py runserver 0.0.0.0:8000
+      - '5432:5432'
     volumes:
-      - .:/EthTransport
+      - 'pgdata:/var/lib/postgresql/data/'
+    stdin_open: true
+    tty: true
+    environment:
+      TZ: Europe/Helsinki
+  web:
+    restart: always
+    container_name: guzo-web
+    build: ./tools/web
+    expose:
+      - '8000'
     links:
-       - postgress
-       - memcache
-       - redis
+      - postgress
+      - memcache
+      - redis
+    volumes:
+      - /usr/guzo
+      - /usr/guzo/static
+    env_file: ./tools/.env
+    command: 'bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn mydjango.wsgi -b 0.0.0.0:8000"'
     ports:
-      - "8000:8000"
+      - '8000:8000'
     depends_on:
       - postgress
     extra_hosts:
-      - www.guzo.dev:127.0.0.1
+      - 'www.guzo.dev:127.0.0.1'
     environment:
       VIRTUAL_HOST: www.guzo.dev
       HTTPS_METHOD: noredirect
       TZ: Europe/Helsinki
-
   memcache:
-    image: memcached:latest
+    image: 'memcached:latest'
     container_name: guzo-memcache
     command: memcached
     environment:
       TZ: Europe/Helsinki
-
   pgadmin:
     image: fenglc/pgadmin4
     container_name: guzo-pgadmin
     links:
-      - postgress:postgress
+      - 'postgress:postgress'
     ports:
-      - "5050:5050"
+      - '5050:5050'
     environment:
       TZ: Europe/Helsinki
-
   redis:
-    image: redis:3-alpine
+    restart: always
+    image: 'redis:3-alpine'
     container_name: guzo-redis
     command: redis-server
     environment:
       TZ: Europe/Helsinki
+volumes:
+  pgdata: null
