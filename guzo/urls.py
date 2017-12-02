@@ -38,6 +38,12 @@ urlpatterns += [
     url(r'^graphql', GraphQLView.as_view(graphiql=True)),
 ]
 
+# OAuth2 provider
+
+urlpatterns = [
+    url(r'^oauth/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+]
+
 from django.conf.urls import url
 from rest_framework_swagger.views import get_swagger_view
 

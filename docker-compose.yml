@@ -1,25 +1,22 @@
 version: '3'
 services:
   nginx:
-    restart: always
-    image: 'nginx:latest'
+    image: nginx:latest
     container_name: guzo-nginx
-    build: ./tools/nginx/
     ports:
-      - '80:80'
-    links:
-      - 'web:web'
+      - "8000:8000"
     volumes:
-      - './guzo:/guzo'
-      - './config/nginx:/etc/nginx/conf.d'
+      - ./src:/src
+      - ./config/nginx:/etc/nginx/conf.d
+      #- /static:/static
     depends_on:
       - web
     environment:
       TZ: Europe/Helsinki
-  postgress:
+  postgres:
     image: postgres
     restart: always
-    container_name: guzo-postgress
+    container_name: guzo-postgres
     ports:
       - '5432:5432'
     volumes:
@@ -32,21 +29,18 @@ services:
     restart: always
     container_name: guzo-web
     build: ./tools/web
+    volumes:
+      - ./src:/src
+      #- /static:/static
     expose:
       - '8000'
     links:
-      - postgress
+      - postgres
       - memcache
       - redis
-    volumes:
-      - /usr/guzo
-      - /usr/guzo/static
-    env_file: ./tools/.env
-    command: 'bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn mydjango.wsgi -b 0.0.0.0:8000"'
-    ports:
-      - '8000:8000'
+    command: bash -c 'python manage.py makemigrations && python manage.py migrate && gunicorn prod.wsgi 0.0.0.0:8001'
     depends_on:
-      - postgress
+      - postgres
     extra_hosts:
       - 'www.guzo.dev:127.0.0.1'
     environment:
@@ -63,7 +57,7 @@ services:
     image: fenglc/pgadmin4
     container_name: guzo-pgadmin
     links:
-      - 'postgress:postgress'
+      - 'postgres:postgres'
     ports:
       - '5050:5050'
     environment:
