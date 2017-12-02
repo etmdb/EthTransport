@@ -23,7 +23,7 @@ with open('guzo/secretkey.txt') as f:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0', ]
 
 # Application definition
 
@@ -34,8 +34,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'rest_framework_swagger',
+    'rest_framework',  # Django rest framework
+    'rest_framework_swagger',  # Django-swagger
+    # 'dbbackup',  # Django-dbbackup
+    'graphene_django',  # Graphene for GraphSQ
     'guzo',
 ]
 
@@ -82,6 +84,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'guzo_prod.db'),
         'CONN_MAX_AGE': 20,
+    },
+    'postgress': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'guzo',
+        'USER': 'pguser',
+        'HOST': 'guzoproject',
+        'PASSWORD': '32cdaAcmrQwu',
+        'PORT': 5432,
     }
 }
 
@@ -119,6 +129,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+# ## Graphene setup
+
+GRAPHENE = {
+    'SCHEMA': 'guzo.lightrail.schema.schema',
+    'MIDDLEWARE': (
+        'graphene_django.debug.DjangoDebugMiddleware',
+    )
+}
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [

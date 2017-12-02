@@ -14,7 +14,7 @@ from django.core.validators import URLValidator
 import random
 from audit_log.models import AuthStampedModel
 import uuid
-from model_utils import Choices
+from guzo.lightrail.model_utils import Choices
 
 salt = 'das54sFsdfVsTplfsNmf'
 
@@ -39,6 +39,7 @@ class Station(BaseModel, AuthStampedModel):
     latitude = models.FloatField(blank=True, null=True, )
     operational_status = models.IntegerField(choices=Choices.OPERATIONAL_STATUSES, default=1, )
     ticket_sale = models.BooleanField(default=True)
+    station = models.ForeignKey(Service, default=1, )
 
 
 class Technical(BaseModel, AuthStampedModel):
@@ -64,7 +65,7 @@ class Service(BaseModel, AuthStampedModel):
 
 class Media(BaseModel, AuthStampedModel):
     gallery_type = models.IntegerField(choices=Choices.SOCIAL_MEDIA, default=1, )
-    image_data = models.ImageField(upload_to='gallery',)
+    image_data = models.ImageField(upload_to='gallery', )
     caption = models.CharField(max_length=60, default='', )
     video_url = models.CharField(max_length=100, blank=True, default='', validators=[URLValidator()], )
     service = models.ForeignKey(Service, blank=True, null=True, )
