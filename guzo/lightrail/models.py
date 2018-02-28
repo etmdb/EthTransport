@@ -30,18 +30,6 @@ class BaseModel(models.Model):
         abstract = True
 
 
-class Station(BaseModel, AuthStampedModel):
-    code = models.CharField(max_length=100, blank=True, )
-    name = models.CharField(max_length=100, )
-    street_address = models.CharField(max_length=100, blank=True, null=True, )
-    place = models.IntegerField(choices=Choices.PLACE, default=1, )
-    longitude = models.FloatField(blank=True, null=True, )
-    latitude = models.FloatField(blank=True, null=True, )
-    operational_status = models.IntegerField(choices=Choices.OPERATIONAL_STATUSES, default=1, )
-    ticket_sale = models.BooleanField(default=True)
-    station = models.ForeignKey(Service, default=1, )
-
-
 class Technical(BaseModel, AuthStampedModel):
     system_length = models.CharField(max_length=100, )
     track_gauge = models.CharField(max_length=100, )
@@ -61,6 +49,18 @@ class Service(BaseModel, AuthStampedModel):
     operators = models.CharField(max_length=100, )
     number_of_vehicles = models.PositiveSmallIntegerField()
     technical = models.OneToOneField(Technical, blank=True, null=True, )
+
+
+class Station(BaseModel, AuthStampedModel):
+    code = models.CharField(max_length=100, blank=True, )
+    name = models.CharField(max_length=100, )
+    street_address = models.CharField(max_length=100, blank=True, null=True, )
+    place = models.IntegerField(choices=Choices.PLACE, default=1, )
+    longitude = models.FloatField(blank=True, null=True, )
+    latitude = models.FloatField(blank=True, null=True, )
+    operational_status = models.IntegerField(choices=Choices.OPERATIONAL_STATUSES, default=1, )
+    ticket_sale = models.BooleanField(default=True)
+    station = models.ForeignKey(Service, default=1, )
 
 
 class Media(BaseModel, AuthStampedModel):
