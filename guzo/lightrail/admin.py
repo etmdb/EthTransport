@@ -14,8 +14,7 @@ from django.contrib.admin.models import LogEntry
 
 
 class BaseAdmin(admin.ModelAdmin):
-    list_display = (
-        'uuid', 'slug', 'entry_status', 'created_by', 'modified_by', 'created_date', 'updated_date')
+    list_display = ('uuid', 'slug', 'entry_status', 'created_by', 'modified_by', 'created_date', 'updated_date')
 
     class Meta:
         abstract = True
@@ -50,9 +49,8 @@ class TechnicalAdmin(BaseAdmin):
 
 
 class MediaAdmin(BaseAdmin):
-    list_display = (
-                       'gallery_type', 'image_data', 'caption', 'video_url', 'service',
-                       'station',) + BaseAdmin.list_display
+    list_display = ('gallery_type', 'image_data', 'caption', 'video_url', 'service',
+                    'station',) + BaseAdmin.list_display
     list_filter = ('gallery_type',)
     search_fields = ('gallery_type', 'caption', 'service', 'station',)
 
@@ -69,8 +67,16 @@ class LogEntryAdmin(admin.ModelAdmin):
         model = LogEntry
 
 
-admin.site.register(Service, ServiceAdmin)
+class PriceQuotaAdmin(BaseAdmin):
+    list_display = ('quota_code', 'description',) + BaseAdmin.list_display
+
+    class Meta:
+        model = PriceQuota
+
+
+admin.site.register(Media, MediaAdmin)
 admin.site.register(Station, StationAdmin)
 admin.site.register(Technical, TechnicalAdmin)
-admin.site.register(Station, StationAdmin)
+admin.site.register(Service, ServiceAdmin)
+admin.site.register(PriceQuota, PriceQuotaAdmin)
 admin.site.register(LogEntry, LogEntryAdmin)

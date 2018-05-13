@@ -13,8 +13,10 @@ from rest_framework import viewsets
 from .serializers import *
 from .models import *
 
+
 # Custom DB Selector #QuickFix for using multiple DB
 # DB_SCOPE = 'guzo_prod.db'
+
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -66,4 +68,13 @@ class MediaViewSet(viewsets.ModelViewSet):
     """
     queryset = Media.objects.all()
     serializer = MediaSerializer
+    serializer_class = serializer
+
+
+class PriceQuotaViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows price quota to be viewed or edited.
+    """
+    queryset = PriceQuota.objects.all()
+    serializer = PriceQuotaSerializer
     serializer_class = serializer

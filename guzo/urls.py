@@ -8,7 +8,6 @@ __date__ = "Date: 18-11-2017"
 __version__ = "Version: 1.0.0"
 __Copyright__ = "Copyright: @dawitnida"
 
-from django.conf.urls import url
 from django.contrib import admin
 
 from django.conf.urls import url, include
@@ -16,19 +15,20 @@ from rest_framework import routers
 from guzo.lightrail import views
 
 router = routers.DefaultRouter()
-# router.register(r'users', views.UserViewSet)
-# router.register(r'groups', views.GroupViewSet)
+router.register(r'users', views.UserViewSet)
+router.register(r'groups', views.GroupViewSet)
 router.register(r'stations', views.StationViewSet)
 router.register(r'service', views.ServiceViewSet)
 router.register(r'technical', views.TechnicalViewSet)
 router.register(r'media', views.MediaViewSet)
+router.register(r'price-quota', views.PriceQuotaViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^admin/', admin.site.urls),
+    url(r'^smelly-cat/', admin.site.urls),
 ]
 
 from graphene_django.views import GraphQLView
@@ -40,7 +40,7 @@ urlpatterns += [
 
 # OAuth2 provider
 
-urlpatterns = [
+urlpatterns += [
     url(r'^oauth/', include('oauth2_provider.urls', namespace='oauth2_provider')),
 ]
 

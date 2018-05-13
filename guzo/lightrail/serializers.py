@@ -51,7 +51,7 @@ class StationSerializer(BaseSerializer):
         model = Station
         fields = BaseSerializer.Meta.fields + (
             'url', 'code', 'name', 'longitude', 'latitude', 'operational_status', 'street_address', 'place',
-            'ticket_sale',)
+            'ticket_sale', 'service',)
 
 
 class TechnicalSerializer(BaseSerializer):
@@ -67,3 +67,9 @@ class MediaSerializer(BaseSerializer):
         model = Media
         fields = BaseSerializer.Meta.fields + (
             'url', 'gallery_type', 'image_data', 'caption', 'video_url', 'service', 'station',)
+
+
+class PriceQuotaSerializer(BaseSerializer):
+    class Meta(BaseSerializer.Meta):
+        model = PriceQuota
+        fields = BaseSerializer.Meta.fields + ('quota_code', 'description',)
