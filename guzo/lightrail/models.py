@@ -15,6 +15,9 @@ import random
 from audit_log.models import AuthStampedModel
 import uuid
 from guzo.lightrail.model_utils import Choices
+from django.template.defaultfilters import slugify
+from django.core.validators import RegexValidator
+from django.utils.encoding import smart_text
 
 salt = 'das54sFsdfVsTplfsNmf'
 
@@ -36,6 +39,13 @@ class Technical(BaseModel, AuthStampedModel):
     top_speed = models.CharField(max_length=100, )
     electrification = models.CharField(max_length=100, )
 
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.system_length)
+        super(Technical, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return smart_text(self.track_gauge)
+
 
 class Service(BaseModel, AuthStampedModel):
     name = models.CharField(max_length=100, )
@@ -50,9 +60,21 @@ class Service(BaseModel, AuthStampedModel):
     number_of_vehicles = models.PositiveSmallIntegerField()
     technical = models.OneToOneField(Technical, blank=True, null=True, )
 
+    class Meta:
+        ordering = ("name", "number_of_stations", "number_of_lines",)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Service, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return smart_text(self.name)
+
 
 class Station(BaseModel, AuthStampedModel):
-    code = models.CharField(max_length=100, blank=True, )
+    code = models.CharField(max_length=6,
+                            validators=[
+                                RegexValidator(regex='^.{6}$', message='Length has to be 6', code='nomatch')])
     name = models.CharField(max_length=100, )
     street_address = models.CharField(max_length=100, blank=True, null=True, )
     place = models.IntegerField(choices=Choices.PLACE, default=1, )
@@ -60,7 +82,18 @@ class Station(BaseModel, AuthStampedModel):
     latitude = models.FloatField(blank=True, null=True, )
     operational_status = models.IntegerField(choices=Choices.OPERATIONAL_STATUSES, default=1, )
     ticket_sale = models.BooleanField(default=True)
-    station = models.ForeignKey(Service, default=1, )
+    service = models.ForeignKey(Service, default=1, )
+
+    class Meta:
+        unique_together = ("code",)
+        ordering = ("name", "code",)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Station, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return smart_text(self.name)
 
 
 class Media(BaseModel, AuthStampedModel):
@@ -70,3 +103,27 @@ class Media(BaseModel, AuthStampedModel):
     video_url = models.CharField(max_length=100, blank=True, default='', validators=[URLValidator()], )
     service = models.ForeignKey(Service, blank=True, null=True, )
     station = models.ForeignKey(Station, blank=True, null=True, )
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.station)
+        super(Media, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return smart_text(self.station)
+
+
+class PriceQuota(BaseModel, AuthStampedModel):
+    quota_code = models.CharField(max_length=4,
+                                  validators=[
+                                      RegexValidator(regex='^.{4}$', message='Length has to be 4', code='nomatch')])
+    description = models.TextField(max_length=100, blank=True, )
+
+    class Meta:
+        unique_together = ("quota_code",)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.quota_code)
+        super(PriceQuota, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return smart_text(self.quota_code)

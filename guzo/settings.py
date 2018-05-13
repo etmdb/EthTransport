@@ -34,13 +34,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    'rest_framework',  # Django rest framework
-    'rest_framework_swagger',  # Django-swagger
-    'dbbackup',  # Django-dbbackup
-    'graphene_django',  # Graphene for GraphSQ
-    'oauth2_provider',  # OAuth Provider
-    'corsheaders',  # corsheaders
-    'guzo',
+    'rest_framework',           # Django rest framework
+    'rest_framework_swagger',   # Django-swagger
+    'dbbackup',                 # Django-dbbackup
+    'graphene_django',          # Graphene for GraphSQ
+    'oauth2_provider',          # OAuth Provider
+    'corsheaders',              # corsheaders
+    'guzo.lightrail',           # Guzo app
 ]
 
 MIDDLEWARE = [
