@@ -1,0 +1,7 @@
+/env
+*.swp
+*.swo
+*.pyc
+config.ini
+supervisord.log
+supervisord.pid
