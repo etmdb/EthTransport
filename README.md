@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/etmdb/EthTransport.svg?token=qSRDtBo4pyPsXgVaW65T&branch=master)](https://travis-ci.com/etmdb/EthTransport.svg?branch=master)
+
 # EthTransport
 
 Initial work for Ethiopian Transportation API. 
