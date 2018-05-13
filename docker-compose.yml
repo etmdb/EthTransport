@@ -6,9 +6,8 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./src:/src
+      - ./guzo:/guzo
       - ./config/nginx:/etc/nginx/conf.d
-      #- /static:/static
     depends_on:
       - web
     environment:
@@ -28,10 +27,12 @@ services:
   web:
     restart: always
     container_name: guzo-web
-    build: ./tools/web
+    image: guzo-web-image
+    build:
+      context: ./tools/web
+      dockerfile: ${PWD}/Dockerfile
     volumes:
-      - ./src:/src
-      #- /static:/static
+      - ./guzo:/guzo
     expose:
       - '8000'
     links:

@@ -16,6 +16,7 @@ graphene==2.1
 graphene-django==2.0.0
 graphql-core==2.0
 graphql-relay==0.4.5
+gunicorn==19.3.0
 idna==2.6
 iso8601==0.1.12
 itypes==1.1.0
