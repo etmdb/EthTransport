@@ -127,3 +127,11 @@ class PriceQuota(BaseModel, AuthStampedModel):
 
     def __str__(self):
         return smart_text(self.quota_code)
+
+    @classmethod
+    def get_description(cls, quota_code):
+        try:
+            description = cls.objects.filter(quota_code=quota_code)
+            return description
+        except IndexError:
+            return None
