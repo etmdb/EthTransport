@@ -11,7 +11,7 @@ env:
   - DJANGO=1.11.13
 
 before_install:
-  - export DJANGO_SETTINGS_MODULE=guzo.settings
+  - export DJANGO_SETTINGS_MODULE=guzo.travis_settings
   - export PYTHONPATH=$HOME/builds/etmdb/EthTransport
   - export PIP_USE_MIRRORS=true
 
@@ -22,6 +22,8 @@ install:
 
 before_script:
   - psql -c "CREATE DATABASE mydb;" -U postgres
-
-script:
   - python manage.py syncdb --noinput
+
+#TODO command to run the test suite
+# script:
+#  - python manage.py test
