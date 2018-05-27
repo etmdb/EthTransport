@@ -27,5 +27,5 @@ before_script:
 
 
 #TODO command to run the test suite
-# script:
-#  - python manage.py test
+script:
+  - python manage.py test
