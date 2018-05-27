@@ -22,7 +22,9 @@ install:
 
 before_script:
   - psql -c "CREATE DATABASE mydb;" -U postgres
-  - python manage.py syncdb --noinput
+  - python manage.py makemigrations
+  - python manage.py migrate
+
 
 #TODO command to run the test suite
 # script:
