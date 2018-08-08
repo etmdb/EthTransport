@@ -11,7 +11,7 @@ Initial work for Ethiopian Transportation API.
 #TODOs
 
 - [x] Service list
-- [x] Train station list
+- [x] Train station list
 - [ ] Add endpoints to
    - [ ] Train Information
    - [ ] Route Information
