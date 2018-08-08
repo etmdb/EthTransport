@@ -10,12 +10,14 @@ Initial work for Ethiopian Transportation API.
 
 #TODOs
 
-[] Add endpoints to
-    [] Train Information
-    [] Route Information
-    [] Fare Information
-    [] Timetable/Schedule Information
-[] Bus Stations
-[] Long/Distance rail stations
-[] Integrate with [AddisMap](http://www.addismap.com/)
+- [x] Service list
+- [x] Train station list
+- [] Add endpoints to
+   - [] Train Information
+   - [] Route Information
+   - [] Fare Information
+   - [] Timetable/Schedule Information
+- [] Bus Stations
+- [] Long/Distance rail stations
+- [] Integrate with [AddisMap](http://www.addismap.com/)
 Please fork and contribute. 
