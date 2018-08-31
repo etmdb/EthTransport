@@ -4,7 +4,7 @@
 
 Initial work for Ethiopian Transportation API. 
 1. Addis Ababa Light Rail (Amharic: የአዲስ አበባ ቀላል ባቡር) is a light rail transportation system with all the stations and other metadata 
-[Google Map View Addis Ababa Light Rail](https://www.google.com/maps/d/viewer?mid=106kgcp8BitU0klqnWtBnndr-jC_7hakN&ll=8.992561924842404%2C38.79902244999994&z=13)
+[Google Map View Addis Ababa Light Rail](https://addis.page.link/lightrail)
 
 ![Map of the Addis Ababa Light Rail](https://github.com/etmdb/EthTransport/blob/master/gallery/Map_of_the_Addis_Ababa_Light_Rail.png)
 
