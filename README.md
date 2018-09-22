@@ -22,3 +22,6 @@ Initial work for Ethiopian Transportation API.
 - [ ] Integrate with [AddisMap](http://www.addismap.com/)
 
 Please fork and contribute. 
+
+## Author
+[Dawit Nida](https://github.com/dawitnida)
