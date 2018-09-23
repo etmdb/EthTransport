@@ -1,4 +1,16 @@
-[![Build Status](https://travis-ci.com/etmdb/EthTransport.svg?token=qSRDtBo4pyPsXgVaW65T&branch=master)](https://travis-ci.com/etmdb/EthTransport.svg?branch=master)
+<p align="center">
+    <img src="https://etmdb.com/static/rest_framework_swagger/images/logo_small.png">
+</p>
+<p align="center">
+    <a href="https://travis-ci.com/etmdb/EthTransport.svg?branch=master" alt="Travis Built">
+        <img src="https://travis-ci.com/etmdb/EthTransport.svg" alt="Travis builds"></a>
+    <a href="https://www.djangoproject.com/">
+        <img src="https://img.shields.io/pypi/djversions/djangorestframework.svg"
+             alt="Django"></a>
+    <a href="https://twitter.com/intent/follow?screen_name=etmdbapi">
+        <img src="https://img.shields.io/twitter/follow/etmdb.svg?style=social&logo=twitter"
+             alt="Follow on Twitter"></a>
+</p>
 
 # EthTransport
 
