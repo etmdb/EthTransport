@@ -84,14 +84,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'guzo_api.db'),
         'CONN_MAX_AGE': 500,
     },
-    'postgress': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'guzo',
-        'USER': 'pguser',
-        'HOST': 'guzoproject',
-        'PASSWORD': '32cdaAcmrQwu',
-        'PORT': 5432,
-    }
 }
 
 # Password validation
