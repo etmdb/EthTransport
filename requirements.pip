@@ -41,5 +41,5 @@ singledispatch==3.4.0.3
 six==1.11.0
 typing==3.6.4
 uritemplate==3.0.0
-urllib3>=1.23
+urllib3==1.22
 yarg==0.1.9
