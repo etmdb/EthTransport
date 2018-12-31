@@ -5,10 +5,33 @@ MAINTAINER Dawit Nida <dchonch@gmail.com>
 
 ENV PYTHONUNBUFFERED 1
 ENV C_FORCE_ROOT true
-WORKDIR /guzo
-COPY /guzo guzo
-COPY manage.py requirements.pip /app/
+
+# Install Python and Package Libraries
+RUN apt-get update && apt-get upgrade -y && apt-get autoremove && apt-get autoclean
+RUN apt-get install -y \
+    libffi-dev \
+    libssl-dev \
+    libxml2-dev \
+    libxslt-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    zlib1g-dev \
+    net-tools \
+    vim
+
+# Project Files and Settings
+ARG PROJECT=guzo
+ARG PROJECT_DIR=/${PROJECT}
+
+RUN mkdir -p ${PROJECT}
+WORKDIR ${PROJECT_DIR}
+COPY ${PROJECT_DIR} .
+COPY manage.py requirements.pip ${PROJECT_DIR}/
 RUN pip install -r requirements.pip && \
-        python manage.py collectstatic --noinput
-EXPOSE 8001
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8001"]
+        python3 manage.py collectstatic --noinput
+
+# Server Setup
+EXPOSE 8000
+STOPSIGNAL SIGINT
+ENTRYPOINT ["python3", "manage.py"]
+CMD ["runserver", "0.0.0.0:8000"]
