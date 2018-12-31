@@ -1,6 +1,6 @@
 # Version: 1.0
 # Dockerfile
-FROM python:3.6
+FROM python:3.4.6
 MAINTAINER Dawit Nida <dchonch@gmail.com>
 
 ENV PYTHONUNBUFFERED 1
@@ -27,11 +27,11 @@ RUN mkdir -p ${PROJECT}
 WORKDIR ${PROJECT_DIR}
 COPY ${PROJECT_DIR} .
 COPY manage.py requirements.pip ${PROJECT_DIR}/
-RUN pip install -r requirements.pip && \
-        python3 manage.py collectstatic --noinput
+RUN pip install --upgrade pip
+RUN pip install -r requirements.pip
 
 # Server Setup
 EXPOSE 8000
 STOPSIGNAL SIGINT
-ENTRYPOINT ["python3", "manage.py"]
+ENTRYPOINT ["python", "manage.py"]
 CMD ["runserver", "0.0.0.0:8000"]
