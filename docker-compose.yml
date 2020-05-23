@@ -65,7 +65,7 @@ services:
       TZ: Europe/Helsinki
   redis:
     restart: always
-    image: 'redis:3-alpine'
+    image: 'redis:alpine3.11'
     container_name: guzo-redis
     command: redis-server
     environment:

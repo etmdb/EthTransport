@@ -7,7 +7,11 @@ ENV PYTHONUNBUFFERED 1
 ENV C_FORCE_ROOT true
 
 # Install Python and Package Libraries
-RUN apt-get update && apt-get upgrade -y && apt-get autoremove && apt-get autoclean
+RUN apt-get update && \
+    apt-get -y upgrade -y && \
+    apt-get autoremove && \
+    apt-get autoclean
+
 RUN apt-get install -y \
     libffi-dev \
     libssl-dev \
@@ -27,6 +31,7 @@ RUN mkdir -p ${PROJECT}
 WORKDIR ${PROJECT_DIR}
 COPY ${PROJECT_DIR} .
 COPY manage.py requirements.pip ${PROJECT_DIR}/
+
 RUN pip install --upgrade pip
 RUN pip install -r requirements.pip
 
