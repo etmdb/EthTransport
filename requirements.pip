@@ -3,7 +3,7 @@ certifi==2018.4.16
 chardet==3.0.4
 coreapi==2.3.3
 coreschema==0.0.4
-django==1.11.21
+django>=1.11.28
 django-audit-log==0.7.0
 django-cors-middleware==1.3.1
 django-dbbackup==3.2.0
@@ -25,7 +25,7 @@ MarkupSafe==1.0
 oauthlib==2.0.7
 openapi-codec==1.3.2
 packaging==17.1
-Pillow==5.1.0
+Pillow>=6.2.2
 pip-review==1.0
 pipreqs==0.4.9
 promise==2.1
