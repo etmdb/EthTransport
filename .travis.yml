@@ -3,16 +3,14 @@
 language: python
 
 python:
-  - "2.7"
-  - "3.4"
   - "3.5"
   - "3.6"
 
 services: postgresql
 
 env:
-  - DJANGO_VERSION=1.11.5
   - DJANGO_VERSION=1.11.13
+  - DJANGO_VERSION=1.11.28
 
 before_install:
   - export DJANGO_SETTINGS_MODULE=guzo.travis_settings
