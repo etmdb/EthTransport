@@ -33,7 +33,7 @@ psycopg2==2.7.4
 psycopg2-binary==2.7.4
 pyparsing==2.2.0
 pytz==2018.4
-requests==2.21.0
+requests==2.33.0
 requests-oauthlib==0.8.0
 Rx==1.6.1
 shortuuid==0.5.0
