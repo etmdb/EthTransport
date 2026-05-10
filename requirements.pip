@@ -1,5 +1,5 @@
 aniso8601==3.0.0
-certifi==2018.4.16
+certifi==2023.7.22
 chardet==3.0.4
 coreapi==2.3.3
 coreschema==0.0.4
