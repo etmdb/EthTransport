@@ -12,7 +12,7 @@ django-oauth2-provider==0.2.6.1
 django-rest-swagger==2.2.0
 djangorestframework==3.9.1
 docopt==0.6.2
-graphene==2.1
+graphene==2.1.9
 graphene-django==2.0.0
 graphql-core==2.0
 graphql-relay==0.4.5
