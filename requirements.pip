@@ -13,7 +13,7 @@ django-rest-swagger==2.2.0
 djangorestframework==3.9.1
 docopt==0.6.2
 graphene==2.1
-graphene-django==2.0.0
+graphene-django==2.16.0
 graphql-core==2.0
 graphql-relay==0.4.5
 gunicorn==19.3.0
