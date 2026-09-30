@@ -1,0 +1,6 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "github>etmdb/actions//renovate.json#e50bbdee645a040f87f1826395883c9d7523833a"
+  ]
+}
