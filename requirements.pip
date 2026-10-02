@@ -28,7 +28,7 @@ packaging==17.1
 Pillow>=6.2.2
 pip-review==1.0
 pipreqs==0.4.9
-promise==2.1
+promise==2.3
 psycopg2==2.7.4
 psycopg2-binary==2.7.4
 pyparsing==2.2.0
