@@ -1,4 +1,4 @@
-aniso8601==3.0.2
+aniso8601==10.0.1
 certifi==2023.11.17
 chardet==3.0.4
 coreapi==2.3.3
