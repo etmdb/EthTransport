@@ -7,7 +7,7 @@ django>=1.11.28
 django-audit-log==0.7.0
 django-cors-middleware==1.5.0
 django-dbbackup==3.3.0
-django-oauth-toolkit==1.7.1
+django-oauth-toolkit==3.4.1
 django-oauth2-provider==0.2.6.1
 django-rest-swagger==2.2.0
 djangorestframework==3.18.1
