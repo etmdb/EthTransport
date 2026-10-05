@@ -1,0 +1,25 @@
+---
+name: CI
+
+on:
+  pull_request:
+    branches: [master]
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  lint-yaml:
+    uses: etmdb/actions/.github/workflows/lint-yaml.yml@e50bbdee645a040f87f1826395883c9d7523833a
+    permissions:
+      contents: read
+
+  lint-markdown:
+    uses: etmdb/actions/.github/workflows/lint-markdown.yml@e50bbdee645a040f87f1826395883c9d7523833a
+    permissions:
+      contents: read
+
+  lint-shell:
+    uses: etmdb/actions/.github/workflows/lint-shell.yml@e50bbdee645a040f87f1826395883c9d7523833a
+    permissions:
+      contents: read
