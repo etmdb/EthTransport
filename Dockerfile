@@ -1,6 +1,6 @@
 # Version: 1.0
 # Dockerfile
-FROM python:3.4.6
+FROM python:3.15.2
 MAINTAINER Dawit Nida <dchonch@gmail.com>
 
 ENV PYTHONUNBUFFERED 1
